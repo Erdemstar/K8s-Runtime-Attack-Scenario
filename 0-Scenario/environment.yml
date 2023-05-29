@@ -64,7 +64,7 @@ spec:
         name: nginx
 ---
 #Service
-apiVersionService: v1
+apiVersion: v1
 kind: Service
 metadata:
   labels:
