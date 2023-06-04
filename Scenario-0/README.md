@@ -1,4 +1,4 @@
-# 0-Scenario
+# Scenario-0
 
 Welcome to Scenario-0 :)
 
