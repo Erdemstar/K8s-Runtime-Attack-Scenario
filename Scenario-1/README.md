@@ -11,5 +11,5 @@ Related Container continues to run using the command "dotnet VulnerableApp4Kuber
 ## Content of Environment file
 
  - **Namespace Object** : A Namespace object named "vulnerable" has been created. As the work will continue under this namespace, the other objects below are created under this namespace.
- - **Deployment Object** : A Deployment object named "vulnerable-deployment" with a single replicaSet using the "erdemstar/vulnerableapp4kubernetes:arm64" (Intel veya AMD tabanlı bir işlemici kullanılıyorsanız image bilgisini erdemstar/vulnerableapp4kubernetes:amd64 yapmanızı tavsiye ederim.) image was created under the "vulnerable" Namespace. 
+ - **Deployment Object** : A Deployment object named "vulnerable-deployment" with a single replicaSet using the "erdemstar/vulnerableapp4kubernetes:arm64" (If you are using an Intel or AMD based processor, I recommend you to change the image information to emrestar/vulnerableapp4kubernetes:amd64.) image was created under the "vulnerable" Namespace. 
  - **Service Object** : In order to access the Deployment object named "vulnerable-deployment" under the "vulnerable" Namespace from outside the Cluster, a nodePort type Service object named "vulnerable-service" has been created.
