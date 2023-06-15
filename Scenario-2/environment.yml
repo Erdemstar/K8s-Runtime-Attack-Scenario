@@ -1,0 +1,59 @@
+#Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vulnerable
+---
+#Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  vulnerable-deployment
+  namespace: vulnerable
+  labels:
+    app: vulnerable-deployment
+spec:
+  selector:
+    matchLabels:
+      app: vulnerable-deployment
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: vulnerable-deployment
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: deploymet
+        image: erdemstar/vulnerableapp4kubernetes:arm64 # alternative image erdemstar/vulnerableapp4kubernetes:amd64
+        resources:
+          requests:
+            cpu: 400m
+            memory: 400Mi
+          limits:
+            cpu: 800m
+            memory: 800Mi
+        ports:
+        - containerPort: 80
+          name: http
+---
+#Service
+kind: Service
+apiVersion: v1
+metadata:
+  name:  vulnerable-service
+  namespace: vulnerable
+spec:
+  selector:
+    app: vulnerable-deployment
+  type:  NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30080
